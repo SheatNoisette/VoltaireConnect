@@ -1,0 +1,28 @@
+{
+
+    "manifest_version": 2,
+    "name": "Voltaire Connect",
+    "version": "1.0",
+  
+    "description": "Fetches sentence from Projet-Voltaire tries to detect any spelling mistakes",
+  
+    "icons": {
+      "48": "icons/icon48.png"
+    },
+  
+    "content_scripts": [
+      {
+        "matches": ["*://*.projet-voltaire.fr/*"],
+        "js": ["vconnect.js"]
+      }
+    ],
+
+    "browser_action": {
+        "browser_style": true,
+        "default_icon": {
+          "48": "icons/icon48.png"
+        }
+      },
+    "permissions" : ["*://*.languagetool.org/*"]
+  
+  }
