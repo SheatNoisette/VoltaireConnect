@@ -9,6 +9,6 @@ This program can get you in trouble. I won't be responsible for any bad grades a
 
 Use this at your own risk! 
 
-# Licence
+# License
 
-This work is licenced under GNU GPL 3.0 Licence. See LICENSE for details.
+This work is licensed under GNU GPL 3.0 License. See LICENSE for details.
