@@ -11,4 +11,4 @@ Use this at your own risk!
 
 # Licence
 
-This work is licenced under MIT Licence. See LICENSE for details.
+This work is licenced under GNU GPL 3.0 Licence. See LICENSE for details.
