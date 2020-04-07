@@ -1,2 +1,12 @@
+# PROJECT
+VoltaireConnect/vconnect.js
+*.zip
+export/
+
+# File ignore
+__pycache__/
 *.py
-vscode/
+*.pyc
+
+# Vs code
+.vscode/
