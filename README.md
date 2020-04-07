@@ -40,6 +40,6 @@ and/or expulsion from any intitutions/school.
 
 Use this at your own risk! 
 
-# Licence
+# License
 
-This work is licensed under MIT Licence. See LICENSE for details.
+This work is licensed under GNU GPL 3.0 License. See LICENSE for details.
