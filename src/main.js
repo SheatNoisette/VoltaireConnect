@@ -8,13 +8,13 @@ This work is licensed under GNU GPL 3.0 license.
 // Time before fetching sentence again
 const TIME_REPEAT = 3000;
 const LANGUAGE_TOOL_API = "https://www.languagetool.org/api/v2/check";
-const VERSION = "20200331";
+const VERSION = "DEV";
 
 //Old sentence 
 var oldSentence = [];
 
 /*
-    MAIN 
+    MAIN
 */
 function fetchContent() {
     var content = document.getElementsByClassName("pointAndClickSpan");
@@ -81,6 +81,9 @@ function getWordIndex(sentenceArray, offset) {
     Get the word index the spelling mistake
 */
 function parseLanguageToolError(jsonInput, sentence) {
+    //Check if we of any json at all
+    console.log(jsonInput);
+
     //Parse raw text into JSON
     var parsedContent = JSON.parse(jsonInput);
 
@@ -131,7 +134,7 @@ function fixSentence(sentence) {
     xhr.onreadystatechange = function (e) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                console.warn("VC: Recieved response from LT: \n" + xhr.responseText + " - " + e.type);
+                console.warn("VC: Recieved response from LT");
                 parseLanguageToolError(xhr.responseText, sentence);
 
             } else {
@@ -149,9 +152,15 @@ function fixSentence(sentence) {
     xhr.send("text=" + sentenceArrayStringify(sentence) + "&language=fr&enabledOnly=false"); 
 }
 
+function initExtension () {
+    
+    //Just says that the extension is loaded
+    console.warn("Voltaire Connect Init - " + VERSION);
+}
 
-//Just says that the extension is loaded
-console.warn("Voltaire Connect Init - " + VERSION);
+//Init extension
+initExtension();
+
 
 //Fetches every TIME ms to check if there is something new
 setInterval(fetchContent, TIME_REPEAT);
