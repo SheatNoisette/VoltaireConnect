@@ -12,4 +12,4 @@ webext: clean
 	mkdir -p export
 	
 	cat ${SRC} >> ${OUTPUT}
-	zip -r -j export/VoltaireConnect.zip VoltaireConnect/*
+	cd VoltaireConnect;zip -r ../export/VoltaireConnect.zip *
