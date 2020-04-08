@@ -6,8 +6,6 @@
   
     "description": "Fetches sentence from Projet-Voltaire tries to detect any spelling mistakes",
   
-    "permissions" : ["*://*.languagetool.org/*", "webRequest"],
-
     "icons": {
       "48": "icons/icon48.png"
     },
@@ -23,8 +21,8 @@
         "browser_style": true,
         "default_icon": {
           "48": "icons/icon48.png"
-        },
-        "default_title": "Voltaire Connect",
-        "default_popup": "popup/popup.html"
-      }
+        }
+      },
+    "permissions" : ["*://*.languagetool.org/*"]
+  
   }

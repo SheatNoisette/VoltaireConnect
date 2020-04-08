@@ -14,11 +14,6 @@ To build the Web Extension, simply do:
 
 `make`
 
-It's possible to build a minified version if [Terser]() is installed.
-To do so, do:
-
-`make webext-min`
-
 # Load untrusted extension into Firefox
 
 As you can imagine, the extension is not signed and never be signed. Thus, you 
