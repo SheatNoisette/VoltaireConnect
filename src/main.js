@@ -18,7 +18,7 @@ var oldSentence = [];
 */
 function fetchContent() {
     //Get sentence from website
-    var sentence = getSentenceArray();
+    var sentence = VoltaireParser.getSentenceArray();
     
     if (sentence.toString() != oldSentence.toString()) {
         //Replace old sentence
@@ -92,24 +92,8 @@ function parseLanguageToolError(jsonInput, sentence) {
     //There is something, color it in red...
     for (match = 0; match < parsedContent.matches.length; match++) {
         console.log("Match:" + parsedContent.matches[match], "- word: " + sentence[getWordIndex(sentence, parsedContent.matches[match].offset)]);
-        setWordColor(getWordIndex(sentence, parsedContent.matches[match].offset), "red");
+        VoltaireParser.setWordColor(getWordIndex(sentence, parsedContent.matches[match].offset), "red");
     }
-}
-
-/*
-    Change the color of the word
-*/
-function setWordColor(wordId, color) {
-
-    var content = document.getElementsByClassName("pointAndClickSpan");
-
-    if (wordId == undefined || wordId > content.length) {
-        console.error("WordID error, got " + wordId);
-        return;
-    }
-
-    //Set color
-    content[wordId].style["color"] = color;
 }
 
 /*

@@ -6,18 +6,44 @@
       \_/\____/\___/|_| |_|_| |_|\___|\___|\__|
                                                 
         Sentence checker for Projet-Volatire
-                PV Website parser
 */
 
-//Get sentence from website
-function getSentenceArray() {
-    var content = document.getElementsByClassName("pointAndClickSpan");
-    var sentence = [];
+/*
+    This class parse the content of the page to get the sentence and change
+    the color of the word ip we want
+*/
 
-    //Merge word into a sentence
-    for (i = 0; i < content.length; i++) { 
-        sentence.push(content[i].textContent);
+class VoltaireParser {
+    /*
+        Change the color of the word required
+        wordId: id of the word
+        color: color of the word (css style color)
+    */
+    static setWordColor(wordId, color) {
+        let content = document.getElementsByClassName("pointAndClickSpan");
+
+        //If there is a problem using
+        if (wordId == undefined || wordId > content.length) {
+            console.error("WordID error, got " + wordId);
+            return;
+        }
+
+    //Set color
+    content[wordId].style["color"] = color;
+}
+
+    /*
+        Get sentence from website as an array
+    */
+    static getSentenceArray() {
+        var content = document.getElementsByClassName("pointAndClickSpan");
+        var sentence = [];
+
+        //Merge word into a sentence
+        for (let i = 0; i < content.length; i++) { 
+            sentence.push(content[i].textContent);
+        }
+
+        return sentence;
     }
-
-    return sentence;
 }
