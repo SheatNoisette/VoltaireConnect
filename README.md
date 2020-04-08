@@ -40,8 +40,8 @@ right of Firefox.
 
 # Important note
 
-This program can get you in trouble. I won't be responsible for any bad grades 
-and/or expulsion from any intitutions/school.
+This program can get you in trouble if used.
+I won't be responsible for any bad grades and/or expulsion from any intitutions/school.
 
 Use this at your own risk! 
 
