@@ -125,8 +125,7 @@ function fixSentence(sentence) {
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Accept", "application/json");
     
-    //Send request
-    xhr.send("text=" + sentenceArrayStringify(sentence) + "&language=fr&enabledOnly=false");
+    
 
     //Try to get the JSON from the API
     xhr.onreadystatechange = function (e) {
@@ -151,6 +150,9 @@ function fixSentence(sentence) {
     xhr.onerror = function (e) {
         console.error("VC: " + xhr.statusText);
     };
+    
+    //Send request
+    xhr.send("text=" + sentenceArrayStringify(sentence) + "&language=fr&enabledOnly=false");
 
 }
 
