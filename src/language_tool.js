@@ -12,6 +12,11 @@
     Class to send and recieve data from language tool
 */
 class LanguageToolAPI {
+    /*
+        constructor of the LT API
+
+        apiLink: link of the LT API (String)
+    */
     constructor (apiLink) {
         this.LANGUAGE_TOOL_API = apiLink;
     }
@@ -41,9 +46,9 @@ class LanguageToolAPI {
         }
     }
     /*
-    Do a request to Langage tool website and propose correcion
+    Do a request to Langage tool website and propose correction
     */
-    fixSentence(sentence) {
+    async fixSentence(sentence) {
         //Create request
         var xhr = new XMLHttpRequest();
         
@@ -58,7 +63,7 @@ class LanguageToolAPI {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     console.warn("VC: Recieved response from LT");
-                    parseLanguageToolError(xhr.responseText, sentence);
+                    LanguageToolAPI.parseError(xhr.responseText, sentence);
                     
                 } else {
                     console.error("VC: Couldn't get response from LanguageTools, the API may be down or you may have been banned");
