@@ -6,59 +6,7 @@ This work is licensed under GNU GPL 3.0 license.
 */
 
 // Time before fetching sentence again
-const TIME_REPEAT = 3000;
 const LANGUAGE_TOOL_API = "https://www.languagetool.org/api/v2/check";
-
-//Old sentence 
-var oldSentence = [];
-
-/*
-MAIN
-*/
-function fetchContent() {
-    //Get sentence from website
-    var sentence = VoltaireParser.getSentenceArray();
-    
-    if (sentence.toString() != oldSentence.toString()) {
-        //Replace old sentence
-        oldSentence = sentence;
-        
-        //Just to inform
-        console.warn("VC: Sentence Detected: " + StringUtils.sentenceStringify(sentence));
-        
-        //Send sentence and change color of the word desired
-        fixSentence(sentence);
-    }
-}
-
-/*
-Get word at a given index 
-sentenceArray: Raw sentence array from PV
-offset: letter offset
-
-Example :
-"This is a sentence" -> ["This", " ", "is", " ", "a", " ", "sentence"]
-index: 2 = 0 
-index: 5 = 2
-index: 8 = 4
-*/
-function getWordIndex(sentenceArray, offset) {
-    //Keep track of the current index
-    var currentIndex = 0;
-    
-    for (word = 0; word < sentenceArray.length; word++) {
-        for (letter = 0; letter < sentenceArray[word].length; letter++) {
-            if (currentIndex == offset) {
-                return word;
-            }
-            currentIndex++;
-        }
-    }
-    
-    //Error then
-    return -1;
-}
-
 
 /*
 Language tool json spelling mistake parser
@@ -79,9 +27,9 @@ function parseLanguageToolError(jsonInput, sentence) {
     return;
     
     //There is something, color it in red...
-    for (match = 0; match < parsedContent.matches.length; match++) {
-        console.log("Match:" + parsedContent.matches[match], "- word: " + sentence[getWordIndex(sentence, parsedContent.matches[match].offset)]);
-        VoltaireParser.setWordColor(getWordIndex(sentence, parsedContent.matches[match].offset), "red");
+    for (let match = 0; match < parsedContent.matches.length; match++) {
+        console.log("Match:" + parsedContent.matches[match], "- word: " + sentence[StringUtils.getWordIndex(sentence, parsedContent.matches[match].offset)]);
+        VoltaireParser.setWordColor(StringUtils.getWordIndex(sentence, parsedContent.matches[match].offset), "red");
     }
 }
 
@@ -130,16 +78,44 @@ function fixSentence(sentence) {
 Main extension class
 */
 class VoltaireConnect {
-    const VERSION = "DEV";
-
     constructor() {
+        //Variables
+
+        //Version of the extension
+        this.VERSION = "DEV";
+
+        //Delay before updating content
+        this.TIME_REPEAT = 3000;
+
+        //Old sentence detected
+        this.oldSentence = []
+
         //Just says that the extension is loaded
-        console.warn("Voltaire Connect Init - " + VERSION);
+        console.warn("Voltaire Connect Init - " + this.VERSION);
+    }
+
+    fetchContent() {
+        //Get sentence from website
+        let sentence = VoltaireParser.getSentenceArray();
+
+        // Check if oldSentence if declared or not
+        if (this.oldSentence == undefined) 
+            this.oldSentence = [];
+        
+        if (sentence.toString() != this.oldSentence.toString()) {
+            //Replace old sentence
+            this.oldSentence = sentence;
+            
+            //Just to inform
+            console.warn("VC: Sentence Detected: " + StringUtils.sentenceStringify(sentence));
+            
+            //Send sentence and change color of the word desired
+            fixSentence(sentence);
+        }
     }
 }
 
 let VoltaireExt = new VoltaireConnect();
 
-
 //Fetches every TIME ms to check if there is something new
-setInterval(fetchContent, TIME_REPEAT);
+setInterval(VoltaireExt.fetchContent, VoltaireExt.TIME_REPEAT);
