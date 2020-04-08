@@ -1,5 +1,6 @@
 # PROJECT
 VoltaireConnect/vconnect.js
+VoltaireConnect/popup/
 *.zip
 export/
 

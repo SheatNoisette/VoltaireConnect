@@ -17,13 +17,8 @@ var oldSentence = [];
     MAIN
 */
 function fetchContent() {
-    var content = document.getElementsByClassName("pointAndClickSpan");
-    var sentence = [];
-
-    //Merge word into a sentence
-    for (i = 0; i < content.length; i++) { 
-        sentence.push(content[i].textContent);
-    }
+    //Get sentence from website
+    var sentence = getSentenceArray();
     
     if (sentence.toString() != oldSentence.toString()) {
         //Replace old sentence
@@ -118,18 +113,21 @@ function setWordColor(wordId, color) {
 }
 
 /*
-    Do a request to Langage tool website and propose correcion
+Do a request to Langage tool website and propose correcion
 */
 function fixSentence(sentence) {
     
     var xhr = new XMLHttpRequest();
-
+    
     xhr.open("POST", LANGUAGE_TOOL_API, true);
-
+    
     //From language tool API
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Accept", "application/json");
     
+    //Send request
+    xhr.send("text=" + sentenceArrayStringify(sentence) + "&language=fr&enabledOnly=false");
+
     //Try to get the JSON from the API
     xhr.onreadystatechange = function (e) {
         if (xhr.readyState === 4) {
@@ -138,8 +136,14 @@ function fixSentence(sentence) {
                 parseLanguageToolError(xhr.responseText, sentence);
 
             } else {
-                console.error("VC: " + xhr.statusText + " - " + e.type);
+                console.error("VC: Couldn't get response from LanguageTools, the API may be down or you may have been banned");
+                console.error("VC - Debug: " + xhr.statusText + " - " + e.type);
+                console.error("VC - Debug: Got " + xhr.status + " from API")
             }
+        }
+        else
+        {
+            console.error("VC: Got " + xhr.readyState + " in readyState");
         }
     };
     
@@ -148,8 +152,6 @@ function fixSentence(sentence) {
         console.error("VC: " + xhr.statusText);
     };
 
-    //Send request
-    xhr.send("text=" + sentenceArrayStringify(sentence) + "&language=fr&enabledOnly=false"); 
 }
 
 function initExtension () {
