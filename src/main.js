@@ -116,7 +116,7 @@ function setWordColor(wordId, color) {
 Do a request to Langage tool website and propose correcion
 */
 function fixSentence(sentence) {
-    
+    //Create request
     var xhr = new XMLHttpRequest();
     
     xhr.open("POST", LANGUAGE_TOOL_API, true);
@@ -125,9 +125,6 @@ function fixSentence(sentence) {
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Accept", "application/json");
     
-    //Send request
-    xhr.send("text=" + sentenceArrayStringify(sentence) + "&language=fr&enabledOnly=false");
-
     //Try to get the JSON from the API
     xhr.onreadystatechange = function (e) {
         if (xhr.readyState === 4) {
@@ -151,8 +148,11 @@ function fixSentence(sentence) {
     xhr.onerror = function (e) {
         console.error("VC: " + xhr.statusText);
     };
-
+    
+    //Send request
+    xhr.send("text=" + encodeURI(sentenceArrayStringify(sentence)) + "&language=fr&enabledOnly=false");
 }
+
 
 function initExtension () {
     
