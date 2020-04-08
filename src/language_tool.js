@@ -41,8 +41,17 @@ class LanguageToolAPI {
         
         //There is something, color it in red...
         for (let match = 0; match < parsedContent.matches.length; match++) {
-            console.log("Match:" + parsedContent.matches[match], "- word: " + sentence[StringUtils.getWordIndex(sentence, parsedContent.matches[match].offset)]);
-            VoltaireParser.setWordColor(StringUtils.getWordIndex(sentence, parsedContent.matches[match].offset), "red");
+            //Selected match object
+            let currentMatch = parsedContent.matches[match];
+
+            //Convert number of letter to the PV word ID
+            let wordId = StringUtils.getWordIndex(sentence, currentMatch.offset);
+            
+            //Debug
+            console.log("Match:", currentMatch, "- word: ", sentence[wordId]);
+
+            //Change word color
+            VoltaireParser.setWordColor(wordId, "red");
         }
     }
     /*
@@ -54,7 +63,7 @@ class LanguageToolAPI {
         
         xhr.open("POST", LANGUAGE_TOOL_API, true);
         
-        //From language tool API
+        //From language tool API - Header
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.setRequestHeader("Accept", "application/json");
         
