@@ -53,7 +53,7 @@ class StringUtils {
                 currentIndex++;
             }
         }
-        
+
         //Error then
         return -1;
     }
