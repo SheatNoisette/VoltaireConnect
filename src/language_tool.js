@@ -25,9 +25,9 @@ class LanguageToolAPI {
     Language tool json spelling mistake parser
     Get the word index the spelling mistake
     */
-    static parseError(jsonInput, sentence) {
+    static parseError(jsonInput, sentenceArray) {
         //Check if we of any json at all
-        console.log(jsonInput);
+        //console.log(jsonInput);
         
         //Parse raw text into JSON
         var parsedContent = JSON.parse(jsonInput);
@@ -37,27 +37,34 @@ class LanguageToolAPI {
         
         //Check if there is not matches using LT
         if (parsedContent.matches.length == 0)
-        return;
+            return;
         
         //There is something, color it in red...
         for (let match = 0; match < parsedContent.matches.length; match++) {
-            //Selected match object
+
+            // Word object
             let currentMatch = parsedContent.matches[match];
 
-            //Convert number of letter to the PV word ID
-            let wordId = StringUtils.getWordIndex(sentence, currentMatch.offset);
-            
-            //Debug
-            console.log("Match:", currentMatch, "- word: ", sentence[wordId]);
+            //Get word position from offset
+            let wordIndex = StringUtils.getWordIndex(sentenceArray, currentMatch.offset);
 
-            //Change word color
-            VoltaireParser.setWordColor(wordId, "red");
+            // Debug information
+            console.warn("LT: Match - word: " + sentenceArray[wordIndex] + " - offset: " + currentMatch.offset);
+            
+            //Links words together to color them (such as "qu'il", "l'école", ...)
+            let wordsLinks = StringUtils.linkWord(sentenceArray, wordIndex);
+  
+            // FOr every links, paint them red!
+            for (let link = 0; link < wordsLinks.length; link++) {
+                console.warn("Painting: " + sentenceArray[wordsLinks[link]]);
+                VoltaireParser.setWordColor(wordsLinks[link], "red");
+            }
         }
     }
     /*
     Do a request to Langage tool website and propose correction
     */
-    async fixSentence(sentence) {
+    async fixSentence(sentenceArray) {
         //Create request
         var xhr = new XMLHttpRequest();
         
@@ -72,7 +79,7 @@ class LanguageToolAPI {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     console.warn("VC: Recieved response from LT");
-                    LanguageToolAPI.parseError(xhr.responseText, sentence);
+                    LanguageToolAPI.parseError(xhr.responseText, sentenceArray);
                     
                 } else {
                     console.error("VC: Couldn't get response from LanguageTools, the API may be down or you may have been banned");
@@ -80,10 +87,12 @@ class LanguageToolAPI {
                     console.error("VC - Debug: Got " + xhr.status + " from API")
                 }
             }
+            /*
             else
             {
                 console.error("VC: Got " + xhr.readyState + " in readyState");
             }
+            */
         };
         
         //Error handler
@@ -92,6 +101,6 @@ class LanguageToolAPI {
         };
         
         //Send request
-        xhr.send("text=" + encodeURI(StringUtils.sentenceStringify(sentence)) + "&language=fr&enabledOnly=false");
+        xhr.send("text=" + encodeURI(StringUtils.sentenceStringify(sentenceArray)) + "&language=fr&enabledOnly=false");
     }
 }

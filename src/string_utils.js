@@ -33,7 +33,7 @@ class StringUtils {
     /*
     Get word at a given index 
     sentenceArray: Raw sentence array from PV
-    offset: letter offset
+    offset: letter offset (space is counted)
 
     Example :
         SentenceArray: ["This", " ", "is", " ", "a", " ", "sentence"]
@@ -58,5 +58,40 @@ class StringUtils {
         return -1;
     }
 
+    /*
+        Link a group of words together
+        
+        Example:
+        sentenceArray: ["Est", "-", "ce", " ", "qu", "'", "il", " ", "est", " ", "là", "?"]
+        wordIndex: 0 - Return: 0 1 2
+        wordIndex: 4: Return 4 5 6
 
+    */
+    static linkWord(sentenceArray, wordIndex) {
+
+        //Detected WordId
+        let links = [];
+        
+        // Push word Index
+        links.push(wordIndex);
+        
+        //Check if it's a space
+        if (sentenceArray[wordIndex] == " ") return links;
+
+        // Iterate right
+        let x = wordIndex + 1;
+        while (x < sentenceArray.length && sentenceArray[x] != " ") {
+            links.push(x);
+            x++;
+        }
+        
+        // Iterate left
+        x = wordIndex - 1;
+        while (x >= 0 && sentenceArray[x] != " ") {
+            links.push(x);
+            x--;
+        }
+
+        return links;
+    }
 }
