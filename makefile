@@ -3,7 +3,8 @@ HEADER = HEADER
 
 SRC = src/voltaire_parser.js \
 	  src/language_tool.js \
-	  src/string_utils.js
+	  src/string_utils.js \
+		src/voltaire_Tree.js
 MAIN = src/main.js
 
 OUTPUT = VoltaireConnect/vconnect.js
