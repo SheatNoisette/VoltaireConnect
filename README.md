@@ -4,6 +4,7 @@ Projet-Volatire website. This is a proof of concept to learn WebExtensionAPI and
 JavaScript. 
 
 This extension has been tested on Firefox 74 and Projet-Volaire 7.2.26.4.
+The extension should work fine on Chrome but has not been tested extensively. 
 
 # Required tools
 
@@ -14,7 +15,9 @@ To build the Web Extension, simply do:
 
 `make`
 
-It's possible to build a minified version if [Terser]() is installed.
+It's possible to build a minified version if 
+[Terser](https://www.npmjs.com/package/terser) CLI is installed.
+
 To do so, do:
 
 `make webext-min`

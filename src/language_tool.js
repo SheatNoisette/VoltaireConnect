@@ -70,7 +70,7 @@ class LanguageToolAPI {
         
         xhr.open("POST", LANGUAGE_TOOL_API, true);
         
-        //From language tool API
+        //From language tool API - Header
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.setRequestHeader("Accept", "application/json");
         

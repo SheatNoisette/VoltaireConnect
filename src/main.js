@@ -48,6 +48,7 @@ class VoltaireConnect {
             
             //Just to inform
             console.warn("VC: Sentence Detected: " + StringUtils.sentenceStringify(sentence));
+            console.warn("VC: Raw: [" + sentence.toString() + "]");
             
             //Send sentence and change color of the word desired
             languageToolApi.fixSentence(sentence);
