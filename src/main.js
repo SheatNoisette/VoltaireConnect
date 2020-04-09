@@ -52,9 +52,23 @@ class VoltaireConnect {
             console.warn("VC: Sentence Detected: " + StringUtils.sentenceStringify(sentence));
             console.warn("VC: Raw: [" + sentence.toString() + "]");
 
-            // Get Yellow words position (possible error/truth | focus point )
-            var IDS = MyFuckingTree.AreError(sentence);
+            var result = (((StringUtils.sentenceStringify(sentence)).replace(","," ").replace("."," ")).toLowerCase()).split(/(\s+)/);
+            var i = result.length - 1
 
+            for(; i >= 0; i--) {
+              if(result[i] == "" ) {
+                  result.splice(i, 1);
+              }
+            }
+            var i = result.length-1;
+            if(result[i] == " ") {
+                result.splice(i, 1);
+            }
+            console.warn("WL input => ", result);
+            // Get Yellow words position (possible error/truth | focus point )
+            var IDS = AnsTree.AreError(result);
+
+            console.warn("WL answer => ", IDS);
             //Color the obtained words into the webpage
             for (var i = 0; i < IDS.length; i++) {
               var elem = IDS[i]
@@ -71,7 +85,7 @@ class VoltaireConnect {
 
 //Main extension class
 var VoltaireExt = new VoltaireConnect(LANGUAGE_TOOL_API);
-var MyFuckingTree = VoltaireExt.VTree;
+var AnsTree = VoltaireExt.VTree;
 
 //Fetches every TIME ms to check if there is something new
 setInterval(VoltaireExt.fetchContent, VoltaireExt.TIME_REPEAT);
