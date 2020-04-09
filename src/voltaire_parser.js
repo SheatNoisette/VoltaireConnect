@@ -37,13 +37,14 @@ class VoltaireParser {
     */
     static getSentenceArray() {
         var content = document.getElementsByClassName("pointAndClickSpan");
+
         var sentence = [];
 
         //Merge word into a sentence
         for (let i = 0; i < content.length; i++) { 
             sentence.push(content[i].textContent);
         }
-
+        
         return sentence;
     }
 }
