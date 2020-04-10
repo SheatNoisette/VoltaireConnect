@@ -2,7 +2,7 @@
 
     "manifest_version": 2,
     "name": "Voltaire Connect",
-    "version": "1.0",
+    "version": "42-dev",
   
     "description": "Fetches sentence from Projet-Voltaire and tries to detect any spelling mistakes",
   
@@ -26,5 +26,13 @@
         },
         "default_title": "Voltaire Connect",
         "default_popup": "popup/popup.html"
+    },
+
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "volatireconnect@pv.com",
+        "strict_min_version": "55.0"
       }
+    }
+    
   }
