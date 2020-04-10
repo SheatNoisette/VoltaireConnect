@@ -43,10 +43,10 @@ right of Firefox.
 
 # Important note
 
-This program can get you in trouble if used.
-I won't be responsible for any bad grades and/or expulsion from any intitutions/school.
+This program can get you in trouble. We won't be responsible for any bad grades 
+and/or expulsion from any institutions/school.
 
-Use this at your own risk! 
+Use this at your own risk!
 
 # License
 
