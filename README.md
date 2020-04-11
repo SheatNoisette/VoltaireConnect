@@ -28,18 +28,18 @@ As you can imagine, the extension is not signed and never be signed. Thus, you
 need to load the extension yourself using a debugging tool provided by Firefox. 
 First, build the extension as explained earlier.
 
-Then, open a new tab on Firefox, copy this "link" on the address tab:
+Then, open a new tab on Firefox, copy this "link" to the address tab:
 
 `about:debugging`
 
-Then press 'enter'
+Then press 'enter'.
 
 Click on "This Firefox" on the top left corner of the page.
 Then, click on "Load Temporary Add-on" and select the zip file contained in the
-"export" folden on this git or from wherever you downloaded this extension.
+"export" folder on this git or from wherever you downloaded this extension.
 
-If the extension has been sucessifuly loaded, a new item appeared on the top
-right of Firefox.
+If the extension has been successfully loaded, a new item will appear on the top
+right of the Firefox toolbar.
 
 # Important note
 
