@@ -73,9 +73,16 @@ class VoltaireConnect {
             for (var i = 0; i < IDS.length; i++) {
               var elem = IDS[i]
               for (var j = elem[0]; j <= elem[1]; j++) {
-                VoltaireParser.setWordColor(j,"gold");
+                //VoltaireParser.setWordColor(j,"gold");
+                //Get links
+                let wordsLinks = StringUtils.linkWord(sentence, j);
+                for (let link = 0; link < wordsLinks.length; link++) {
+                    VoltaireParser.setWordColor(wordsLinks[link],"gold");
+                }
               }
             }
+
+
 
             //Send sentence and change color of the word desired
             languageToolApi.fixSentence(sentence);
