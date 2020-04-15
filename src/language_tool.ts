@@ -12,12 +12,16 @@
     Class to send and recieve data from language tool
 */
 class LanguageToolAPI {
+    
+    // Definition
+    LANGUAGE_TOOL_API;
+
     /*
         constructor of the LT API
 
         apiLink: link of the LT API (String)
     */
-    constructor (apiLink) {
+    constructor (public apiLink) {
         this.LANGUAGE_TOOL_API = apiLink;
     }
 

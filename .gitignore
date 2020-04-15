@@ -3,6 +3,10 @@ VoltaireConnect/vconnect.js
 VoltaireConnect/popup/
 *.zip
 export/
+*.map
+
+# Node
+node_modules/
 
 # File ignore
 __pycache__/

@@ -20,7 +20,7 @@ class StringUtils {
         ["This", " ", "is", "a", "test", "!"] -> "This is a test!"
 
     */
-    static sentenceStringify(sentenceArray) {
+    static sentenceStringify(sentenceArray):string {
         var sentenceOut = "";
 
         for (let i = 0; i < sentenceArray.length; i++) { 
@@ -41,9 +41,9 @@ class StringUtils {
         offset: 5 = 2
         offset: 8 = 4
     */
-    static getWordIndex(sentenceArray, offset) {
+    static getWordIndex(sentenceArray:Array<string>, offset:number):number {
         //Keep track of the current index
-        let currentIndex = 0;
+        let currentIndex:number = 0;
         
         for (let word = 0; word < sentenceArray.length; word++) {
             for (let letter = 0; letter < sentenceArray[word].length; letter++) {
@@ -67,10 +67,10 @@ class StringUtils {
         wordIndex: 4: Return 4 5 6
 
     */
-    static linkWord(sentenceArray, wordIndex) {
+    static linkWord(sentenceArray:Array<string>, wordIndex:number):Array<number> {
 
         //Detected WordId
-        let links = [];
+        let links: Array<number> = [];
         
         // Push word Index
         links.push(wordIndex);

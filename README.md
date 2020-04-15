@@ -8,8 +8,8 @@ The extension should work fine on Chrome but has not been tested extensively.
 
 # Required tools
 
-A POSIX compatible environement is required to build a web extension ready to
-be imported in Firefox.
+A POSIX compatible environement and [TypeScript](https://www.typescriptlang.org/index.html#download-links) 
+are required to build a web extension ready to be imported in Firefox.
 
 To build the Web Extension, simply do:
 
