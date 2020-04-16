@@ -2,16 +2,16 @@
 
     "manifest_version": 2,
     "name": "Voltaire Connect",
-    "version": "42-dev",
-  
+    "version": "42",
+
     "description": "Fetches sentence from Projet-Voltaire and tries to detect any spelling mistakes",
-  
+
     "permissions" : ["*://*.languagetool.org/*", "webRequest"],
 
     "icons": {
       "48": "icons/icon48.png"
     },
-  
+
     "content_scripts": [
       {
         "matches": ["*://*.projet-voltaire.fr/*"],
@@ -34,5 +34,5 @@
         "strict_min_version": "55.0"
       }
     }
-    
+
   }
