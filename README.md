@@ -3,7 +3,7 @@ A simple web extension for Firefox to detect spelling mistakes in
 Projet-Volatire website. This is a proof of concept to learn WebExtensionAPI and
 JavaScript. 
 
-This extension has been tested on Firefox 74 and Projet-Volaire 7.2.26.4.
+This extension has been tested on Firefox 75 and Projet-Volaire 7.2.27.1.
 The extension should work fine on Chrome but has not been tested extensively. 
 
 # Required tools
