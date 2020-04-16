@@ -1,4 +1,7 @@
 # VoltaireConnect
+[![Actions Status](https://github.com/SheatNoisette/VoltaireConnect/workflows/CI/badge.svg)](https://github.com/SheatNoisette/VoltaireConnect/actions)
+[![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
+
 A simple web extension for Firefox to detect spelling mistakes in 
 Projet-Volatire website. This is a proof of concept to learn WebExtensionAPI and
 JavaScript. 
