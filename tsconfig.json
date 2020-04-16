@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "outDir": "./VoltaireConnect/vsconnect.js",
+        "allowJs": true,
+        "target": "es2016",
+        "sourceMap": true
+    },
+    "include": [
+        "./src/language_tool.ts",
+        "./src/string_utils.ts",
+        "./src/voltaire_parser.ts",
+        "./src/voltaire_tree.ts",
+        "./src/main.ts"
+    ]
+}

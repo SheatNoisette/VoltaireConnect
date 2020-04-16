@@ -19,7 +19,7 @@ class VoltaireParser {
         wordId: id of the word
         color: color of the word (css style color)
     */
-    static setWordColor(wordId, color) {
+    static setWordColor(wordId, color):void {
         let content = document.getElementsByClassName("pointAndClickSpan");
 
         //If there is a problem using
@@ -28,14 +28,14 @@ class VoltaireParser {
             return;
         }
 
-    //Set color
-    content[wordId].style["color"] = color;
-}
+        //Set color
+        content[wordId].setAttribute("style", "color:" + color + ";");
+    }
 
     /*
         Get sentence from website as an array
     */
-    static getSentenceArray() {
+    static getSentenceArray():Array<string> {
         var content = document.getElementsByClassName("pointAndClickSpan");
 
         var sentence = [];

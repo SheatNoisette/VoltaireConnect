@@ -2,10 +2,9 @@
 HEADER = HEADER
 
 SRC = src/voltaire_parser.js \
-	  src/language_tool.js \
-	  src/string_utils.js \
-		src/voltaire_Tree.js
-MAIN = src/main.js
+      src/language_tool.js \
+      src/string_utils.js \
+      src/voltaire_Tree.js
 
 OUTPUT = VoltaireConnect/vconnect.js
 
@@ -14,9 +13,10 @@ OUTPUT = VoltaireConnect/vconnect.js
 all: webext
 
 clean:
-	rm -rf export
-	rm -rf VoltaireConnect/popup/
-	rm -f ${OUTPUT}
+	$(RM) -rf export
+	$(RM) -rf VoltaireConnect/popup/
+	$(RM) -f ${OUTPUT}.map
+	$(RM) -f ${OUTPUT}
 
 prepare:
 	mkdir -p export
@@ -24,12 +24,15 @@ prepare:
 	mkdir -p VoltaireConnect/popup/
 	cp src/popup/* VoltaireConnect/popup/
 
-webext: clean prepare
-	cat ${HEADER} ${SRC} ${MAIN} >> ${OUTPUT}
+ts:
+	tsc --outFile ${OUTPUT}
+
+webext: clean prepare ts
 	cd VoltaireConnect;zip -r ../export/VoltaireConnect.zip *
 
-webext-min: clean prepare
-	terser ${SRC} ${MAIN} -o ${OUTPUT}.tmp -c -m
-	cat ${HEADER} ${OUTPUT}.tmp >> $(OUTPUT)
+webext-min: clean prepare ts
+	terser ${OUTPUT} -o ${OUTPUT}.tmp -c -m
+	rm -f ${OUTPUT}
+	cat ${HEADER} ${OUTPUT}.tmp > $(OUTPUT)
 	rm -f ${OUTPUT}.tmp
 	cd VoltaireConnect;zip -r ../export/VoltaireConnect.zip *
