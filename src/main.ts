@@ -29,14 +29,14 @@ class VoltaireConnect {
     //Api string for LT
     languageToolApiString:String;
 
-    // Warning Tree 
+    // Warning Tree
     private VTree = new VoltaireTree();
 
     constructor(public languageToolApi:String) {
 
         //Api string for LT
         this.languageToolApiString = languageToolApi;
-        
+
         //Generate warning tree
         this.VTree.Gen_Tree();
 
@@ -54,6 +54,7 @@ class VoltaireConnect {
         //Get sentence from website
         let sentence:Array<string> = VoltaireParser.getSentenceArray();
 
+
         // Refresh
         if (sentence.toString() != this.oldSentence.toString()) {
             //Replace old sentence
@@ -63,33 +64,16 @@ class VoltaireConnect {
             console.warn("VC: Sentence Detected: " + StringUtils.sentenceStringify(sentence));
             console.warn("VC: Raw: [" + sentence.toString() + "]");
 
-            var result = (((StringUtils.sentenceStringify(sentence)).replace(","," ").replace("."," ")).toLowerCase()).split(/(\s+)/);
-            var i = result.length - 1
 
-            for(; i >= 0; i--) {
-              if(result[i] == "" ) {
-                  result.splice(i, 1);
-              }
-            }
-            var i = result.length-1;
-            if(result[i] == " ") {
-                result.splice(i, 1);
-            }
-            console.warn("WL input => ", result);
             // Get Yellow words position (possible error/truth | focus point )
-            var IDS = this.VTree.AreError(result);
+            var IDS = this.VTree.AreError(sentence);
 
             console.warn("WL answer => ", IDS);
             //Color the obtained words into the webpage
             for (var i = 0; i < IDS.length; i++) {
               var elem = IDS[i]
               for (var j = elem[0]; j <= elem[1]; j++) {
-                //VoltaireParser.setWordColor(j,"gold");
-                //Get links
-                let wordsLinks = StringUtils.linkWord(sentence, j);
-                for (let link = 0; link < wordsLinks.length; link++) {
-                    VoltaireParser.setWordColor(wordsLinks[link],"gold");
-                }
+                VoltaireParser.setWordColor(j,"gold");
               }
             }
 

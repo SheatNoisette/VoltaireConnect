@@ -1,10 +1,10 @@
 /*
-            ___                            _   
-    /\   /\/ __\___  _ __  _ __   ___  ___| |_ 
+            ___                            _
+    /\   /\/ __\___  _ __  _ __   ___  ___| |_
     \ \ / / /  / _ \| '_ \| '_ \ / _ \/ __| __|
-     \ V / /__| (_) | | | | | | |  __/ (__| |_ 
+     \ V / /__| (_) | | | | | | |  __/ (__| |_
       \_/\____/\___/|_| |_|_| |_|\___|\___|\__|
-                                                
+
         Sentence checker for Projet-Volatire
 */
 
@@ -41,10 +41,10 @@ class VoltaireParser {
         var sentence = [];
 
         //Merge word into a sentence
-        for (let i = 0; i < content.length; i++) { 
+        for (let i = 0; i < content.length; i++) {
             sentence.push(content[i].textContent);
         }
-        
+
         return sentence;
     }
 }
