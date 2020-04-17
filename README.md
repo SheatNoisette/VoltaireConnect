@@ -3,10 +3,10 @@
 [![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
 
 A simple web extension for Firefox to detect spelling mistakes in 
-Projet-Volatire website. This is a proof of concept to learn WebExtensionAPI and
-JavaScript. 
+Projet-Voltaire website. This is a proof of concept to learn WebExtensionAPI and
+TypeScript.
 
-This extension has been tested on Firefox 75 and Projet-Volaire 7.2.27.1.
+This extension has been tested on Firefox 75 and Projet-Voltaire 7.2.27.1.
 The extension should work fine on Chrome but has not been tested extensively. 
 
 # Required tools
