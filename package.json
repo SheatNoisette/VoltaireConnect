@@ -1,0 +1,21 @@
+{
+  "name": "voltaire-connect",
+  "version": "0.4.2",
+  "description": "Fetches sentence from Projet-Voltaire and tries to detect any spelling mistakes",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SheatNoisette/VoltaireConnect.git"
+  },
+  "keywords": [
+    "projet-voltaire"
+  ],
+  "author": "SheatNoisette and contributors",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/SheatNoisette/VoltaireConnect/issues"
+  },
+  "homepage": "https://github.com/SheatNoisette/VoltaireConnect",
+  "dependencies": {
+    "web-ext-types": "github:kelseasy/web-ext-types"
+  }
+}

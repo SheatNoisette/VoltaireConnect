@@ -14,8 +14,10 @@ The extension should work fine on Chrome but has not been tested extensively.
 A POSIX compatible environement and [TypeScript](https://www.typescriptlang.org/index.html#download-links) 
 are required to build a web extension ready to be imported in Firefox.
 
-To build the Web Extension, simply do:
+Add the necessary dependencies:
+`npm install`
 
+Then, to build the Web Extension, simply do:
 `make`
 
 It's possible to build a minified version if 
