@@ -11,6 +11,8 @@
         "./src/string_utils.ts",
         "./src/voltaire_parser.ts",
         "./src/voltaire_tree.ts",
+        "./src/cordial.ts",
+        "./src/spellchecker.ts",
         "./src/main.ts"
     ]
 }
