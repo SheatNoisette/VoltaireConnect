@@ -8,21 +8,7 @@
         Sentence checker for Projet-Volatire
 */
 
-.warning {
-    color: darkred;
+//Base interface for spellcheckers
+interface ISpellChecker {
+    fixSentence(sentenceArray:Array<string>):any;
 }
-
-.title {
-    text-align: center;
-}
-
-.button {
-    padding: 12px 16px;
-    font-size: 16px;
-    border: none;
-    color: white;
-    background-color: rgb(56, 56, 56);
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-  }

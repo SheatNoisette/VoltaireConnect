@@ -19,28 +19,41 @@ class VoltaireConnect {
 
     //Class definition
     //Version of the extension
-    VERSION:string = "DEV";
+    VERSION: string = "DEV";
 
     //Delay before updating content
-    TIME_REPEAT:number = 3000;
+    TIME_REPEAT: number = 3000;
 
     // Old sentence detected from PV
     private oldSentence: Array<string>;
 
     //Api string for LT
-    languageToolApiString:String;
+    languageToolApiString: String;
+
+    //Language tool object
+    languageTool: LanguageToolAPI;
+
+    //Cordial-Reverso spellchecker
+    cordialAPI: CordialAPI;
 
     // Warning Tree
     private VTree = new VoltaireTree();
 
     //Feature toggle
-    enabledLanguageTool; /* Language Tool */
-    enabledWordList; /* Wordlist */
+    enabledLanguageTool: boolean; /* Language Tool */
+    enabledWordList: boolean; /* Wordlist */
+    enabledCordial: boolean; /* Cordial */
 
     constructor(public languageToolApi:String) {
 
         //Api string for LT
         this.languageToolApiString = languageToolApi;
+
+        //Create object for correction
+        this.languageTool = new LanguageToolAPI(this.languageToolApiString);
+
+        //Create Cordial API
+        this.cordialAPI = new CordialAPI();
 
         //Generate warning tree
         this.VTree.Gen_Tree();
@@ -51,18 +64,17 @@ class VoltaireConnect {
         //Enable features
         this.enabledLanguageTool = true;
         this.enabledWordList = true;
+        //Cordial is disabled by default - EULA forbid it
+        this.enabledCordial = false;
 
         //Just says that the extension is loaded
         console.warn("Voltaire Connect Init - " + this.VERSION);
     }
 
     fetchContent (){
-        //LT Object API
-        let languageToolApi = new LanguageToolAPI(this.languageToolApiString);
 
         //Get sentence from website
         let sentence:Array<string> = VoltaireParser.getSentenceArray();
-
 
         // Refresh
         if (sentence.toString() != this.oldSentence.toString()) {
@@ -89,8 +101,14 @@ class VoltaireConnect {
             }
 
             //Send sentence and change color of the word desired
+
+            //LanguageTool
             if (this.enabledLanguageTool)
-                languageToolApi.fixSentence(sentence);
+                this.languageTool.fixSentence(sentence);
+            
+            //Cordial checker
+            if (this.enabledCordial)
+                this.cordialAPI.fixSentence(sentence);
         }
     }
     /*
@@ -107,6 +125,11 @@ class VoltaireConnect {
         else if (request.enable == "wordlist") {
             this.enabledWordList = !this.enabledWordList;
             sendResponse({enabled: this.enabledWordList});
+        }
+        //Wordlist enable
+        else if (request.enable == "cordial") {
+            this.enabledCordial  = !this.enabledCordial ;
+            sendResponse({enabled: this.enabledCordial});
         } 
         //Fake Reset color attributes
         else if (request.enable == "clear") {
@@ -114,7 +137,7 @@ class VoltaireConnect {
         }
 
         //Status
-        console.warn("VC : - LT: " + this.enabledLanguageTool + " WL: " + this.enabledWordList);
+        console.warn("VC : - LT: " + this.enabledLanguageTool + " WL: " + this.enabledWordList + " CD: " + this.enabledCordial);
     }
 }
 

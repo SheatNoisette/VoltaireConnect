@@ -11,7 +11,7 @@
 /*
     Class to send and recieve data from language tool
 */
-class LanguageToolAPI {
+class LanguageToolAPI implements ISpellChecker {
     
     // Definition
     LANGUAGE_TOOL_API;
@@ -37,7 +37,7 @@ class LanguageToolAPI {
         var parsedContent = JSON.parse(jsonInput);
         
         //Says how many error is in the sentence
-        console.log("VC: " + parsedContent.matches.length + " error(s) detected");
+        console.log("VC: LT : " + parsedContent.matches.length + " error(s) detected");
         
         //Check if there is not matches using LT
         if (parsedContent.matches.length == 0)
@@ -68,7 +68,7 @@ class LanguageToolAPI {
     /*
     Do a request to Langage tool website and propose correction
     */
-    async fixSentence(sentenceArray) {
+    async fixSentence(sentenceArray:Array<string>) {
         //Create request
         var xhr = new XMLHttpRequest();
         
