@@ -3,7 +3,8 @@
         "outDir": "./VoltaireConnect/vsconnect.js",
         "allowJs": true,
         "target": "es2016",
-        "sourceMap": true
+        "sourceMap": true,
+        "typeRoots": ["node_modules/@types", "node_modules/web-ext-types"]
     },
     "include": [
         "./src/language_tool.ts",

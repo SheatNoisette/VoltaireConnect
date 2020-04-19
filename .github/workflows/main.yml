@@ -29,4 +29,5 @@ jobs:
         sudo apt update && sudo apt upgrade -y
         sudo apt install nodejs npm
         sudo npm install -g typescript
+        npm install
         make

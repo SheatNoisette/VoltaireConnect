@@ -6,9 +6,10 @@
       \_/\____/\___/|_| |_|_| |_|\___|\___|\__|
 
         Sentence checker for Projet-Volatire
-This extension dump the sentence shown on screen then send it to a server
-to process and check spelling mistakes.
-This work is licensed under GNU GPL 3.0 license.
+          This extension dump the sentence 
+      shown on screen then send it to a server
+        to process and check spelling mistakes.
+     This work is licensed under GNU GPL 3.0 license.
 */
 
 /*
@@ -32,6 +33,10 @@ class VoltaireConnect {
     // Warning Tree
     private VTree = new VoltaireTree();
 
+    //Feature toggle
+    enabledLanguageTool; /* Language Tool */
+    enabledWordList; /* Wordlist */
+
     constructor(public languageToolApi:String) {
 
         //Api string for LT
@@ -42,6 +47,10 @@ class VoltaireConnect {
 
         //Assign oldSentence
         this.oldSentence = [];
+
+        //Enable features
+        this.enabledLanguageTool = true;
+        this.enabledWordList = true;
 
         //Just says that the extension is loaded
         console.warn("Voltaire Connect Init - " + this.VERSION);
@@ -64,22 +73,48 @@ class VoltaireConnect {
             console.warn("VC: Sentence Detected: " + StringUtils.sentenceStringify(sentence));
             console.warn("VC: Raw: [" + sentence.toString() + "]");
 
+            //Word list system
+            if (this.enabledWordList) {
+                // Get Yellow words position (possible error/truth | focus point )
+                var IDS = this.VTree.AreError(sentence);
 
-            // Get Yellow words position (possible error/truth | focus point )
-            var IDS = this.VTree.AreError(sentence);
-
-            console.warn("WL answer => ", IDS);
-            //Color the obtained words into the webpage
-            for (var i = 0; i < IDS.length; i++) {
-              var elem = IDS[i]
-              for (var j = elem[0]; j <= elem[1]; j++) {
-                VoltaireParser.setWordColor(j,"gold");
-              }
+                console.warn("WL answer => ", IDS);
+                //Color the obtained words into the webpage
+                for (var i = 0; i < IDS.length; i++) {
+                    var elem = IDS[i];
+                    for (var j = elem[0]; j <= elem[1]; j++) {
+                        VoltaireParser.setWordColor(j,"gold");
+                    }
+                }
             }
 
             //Send sentence and change color of the word desired
-            languageToolApi.fixSentence(sentence);
+            if (this.enabledLanguageTool)
+                languageToolApi.fixSentence(sentence);
         }
+    }
+    /*
+        Handler internal messages from popup
+    */
+    handleMessage(request, sender, sendResponse) {
+
+        //Enable Language tools
+        if (request.enable == "languagetools") {
+            this.enabledLanguageTool = !this.enabledLanguageTool;
+            sendResponse({enabled: this.enabledLanguageTool});
+        }
+        //Wordlist enable
+        else if (request.enable == "wordlist") {
+            this.enabledWordList = !this.enabledWordList;
+            sendResponse({enabled: this.enabledWordList});
+        } 
+        //Fake Reset color attributes
+        else if (request.enable == "clear") {
+            VoltaireParser.resetWordColor();
+        }
+
+        //Status
+        console.warn("VC : - LT: " + this.enabledLanguageTool + " WL: " + this.enabledWordList);
     }
 }
 
@@ -88,6 +123,11 @@ const LANGUAGE_TOOL_API = "https://www.languagetool.org/api/v2/check";
 
 //Main extension class
 var VoltaireExt = new VoltaireConnect(LANGUAGE_TOOL_API);
+
+//Handle message from popup
+browser.runtime.onMessage.addListener(
+    (request, sender, sendResponse) => VoltaireExt.handleMessage(request, sender, sendResponse)
+);
 
 //Fetches every TIME ms to check if there is something new
 setInterval(() => VoltaireExt.fetchContent(), VoltaireExt.TIME_REPEAT);

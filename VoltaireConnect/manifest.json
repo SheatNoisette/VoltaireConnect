@@ -5,8 +5,9 @@
     "version": "42",
 
     "description": "Fetches sentence from Projet-Voltaire and tries to detect any spelling mistakes",
+    "homepage_url": "https://github.com/SheatNoisette/VoltaireConnect",
 
-    "permissions" : ["*://*.languagetool.org/*", "webRequest"],
+    "permissions" : ["*://*.languagetool.org/*", "webRequest", "tabs"],
 
     "icons": {
       "48": "icons/icon48.png"

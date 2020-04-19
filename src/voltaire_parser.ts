@@ -19,7 +19,7 @@ class VoltaireParser {
         wordId: id of the word
         color: color of the word (css style color)
     */
-    static setWordColor(wordId, color):void {
+    static setWordColor(wordId:number, color:string):void {
         let content = document.getElementsByClassName("pointAndClickSpan");
 
         //If there is a problem using
@@ -46,5 +46,16 @@ class VoltaireParser {
         }
 
         return sentence;
+    }
+
+    /*
+        Change every words to black
+    */
+    static resetWordColor():void {
+        let content = document.getElementsByClassName("pointAndClickSpan");
+
+        for(let i = 0; i < content.length; i++) {
+            VoltaireParser.setWordColor(i, "black");
+        }
     }
 }
