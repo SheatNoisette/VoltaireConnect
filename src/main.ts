@@ -30,6 +30,9 @@ class VoltaireConnect {
     //Api string for LT
     languageToolApiString:String;
 
+    //Language tool object
+    languageTool;
+
     // Warning Tree
     private VTree = new VoltaireTree();
 
@@ -41,6 +44,9 @@ class VoltaireConnect {
 
         //Api string for LT
         this.languageToolApiString = languageToolApi;
+
+        //Create object for correction
+        this.languageTool = new LanguageToolAPI(this.languageToolApiString)
 
         //Generate warning tree
         this.VTree.Gen_Tree();
@@ -57,8 +63,6 @@ class VoltaireConnect {
     }
 
     fetchContent (){
-        //LT Object API
-        let languageToolApi = new LanguageToolAPI(this.languageToolApiString);
 
         //Get sentence from website
         let sentence:Array<string> = VoltaireParser.getSentenceArray();
@@ -89,8 +93,13 @@ class VoltaireConnect {
             }
 
             //Send sentence and change color of the word desired
+
+            //LanguageTool
             if (this.enabledLanguageTool)
-                languageToolApi.fixSentence(sentence);
+                this.languageTool.fixSentence(sentence);
+            
+            //Cordial checker
+            
         }
     }
     /*
