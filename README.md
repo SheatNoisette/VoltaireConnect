@@ -56,3 +56,6 @@ Use this at your own risk!
 # License
 
 This work is licensed under GNU GPL 3.0 License. See LICENSE for details.
+
+This project use [PolyFill](https://github.com/mozilla/webextension-polyfill/)
+which is subject to Mozilla Public License.

@@ -19,7 +19,7 @@
     "content_scripts": [
       {
         "matches": ["*://*.projet-voltaire.fr/*"],
-        "js": ["vconnect.js"]
+        "js": ["browser-polyfill.min.js", "vconnect.js"]
       }
     ],
 
