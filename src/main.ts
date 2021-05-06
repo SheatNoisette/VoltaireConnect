@@ -6,7 +6,7 @@
       \_/\____/\___/|_| |_|_| |_|\___|\___|\__|
 
         Sentence checker for Projet-Volatire
-          This extension dump the sentence 
+          This extension dump the sentence
       shown on screen then send it to a server
         to process and check spelling mistakes.
      This work is licensed under GNU GPL 3.0 license.
@@ -44,7 +44,7 @@ class VoltaireConnect {
     enabledWordList: boolean; /* Wordlist */
     enabledCordial: boolean; /* Cordial */
 
-    constructor(public languageToolApi:String) {
+    constructor(public languageToolApi: String) {
 
         //Api string for LT
         this.languageToolApiString = languageToolApi;
@@ -71,10 +71,10 @@ class VoltaireConnect {
         console.warn("Voltaire Connect Init - " + this.VERSION);
     }
 
-    fetchContent (){
+    fetchContent() {
 
         //Get sentence from website
-        let sentence:Array<string> = VoltaireParser.getSentenceArray();
+        let sentence: Array<string> = VoltaireParser.getSentenceArray();
 
         // Refresh
         if (sentence.toString() != this.oldSentence.toString()) {
@@ -95,7 +95,7 @@ class VoltaireConnect {
                 for (var i = 0; i < IDS.length; i++) {
                     var elem = IDS[i];
                     for (var j = elem[0]; j <= elem[1]; j++) {
-                        VoltaireParser.setWordColor(j,"gold");
+                        VoltaireParser.setWordColor(j, "gold");
                     }
                 }
             }
@@ -105,7 +105,7 @@ class VoltaireConnect {
             //LanguageTool
             if (this.enabledLanguageTool)
                 this.languageTool.fixSentence(sentence);
-            
+
             //Cordial checker
             if (this.enabledCordial)
                 this.cordialAPI.fixSentence(sentence);
@@ -119,18 +119,18 @@ class VoltaireConnect {
         //Enable Language tools
         if (request.enable == "languagetools") {
             this.enabledLanguageTool = !this.enabledLanguageTool;
-            sendResponse({enabled: this.enabledLanguageTool});
+            sendResponse({ enabled: this.enabledLanguageTool });
         }
         //Wordlist enable
         else if (request.enable == "wordlist") {
             this.enabledWordList = !this.enabledWordList;
-            sendResponse({enabled: this.enabledWordList});
+            sendResponse({ enabled: this.enabledWordList });
         }
         //Wordlist enable
         else if (request.enable == "cordial") {
-            this.enabledCordial  = !this.enabledCordial ;
-            sendResponse({enabled: this.enabledCordial});
-        } 
+            this.enabledCordial = !this.enabledCordial;
+            sendResponse({ enabled: this.enabledCordial });
+        }
         //Fake Reset color attributes
         else if (request.enable == "clear") {
             VoltaireParser.resetWordColor();
@@ -142,7 +142,7 @@ class VoltaireConnect {
 }
 
 //Language tool API
-const LANGUAGE_TOOL_API = "https://www.languagetool.org/api/v2/check";
+const LANGUAGE_TOOL_API = "https://api.languagetool.org/v2/check";
 
 //Main extension class
 var VoltaireExt = new VoltaireConnect(LANGUAGE_TOOL_API);

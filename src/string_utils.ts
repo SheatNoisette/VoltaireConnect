@@ -20,13 +20,13 @@ class StringUtils {
         ["This", " ", "is", "a", "test", "!"] -> "This is a test!"
 
     */
-    static sentenceStringify(sentenceArray):string {
+    static sentenceStringify(sentenceArray): string {
         var sentenceOut = "";
 
-        for (let i = 0; i < sentenceArray.length; i++) { 
+        for (let i = 0; i < sentenceArray.length; i++) {
             sentenceOut += sentenceArray[i];
         }
-    
+
         return sentenceOut;
     }
 
@@ -41,10 +41,10 @@ class StringUtils {
         offset: 5 = 2
         offset: 8 = 4
     */
-    static getWordIndex(sentenceArray:Array<string>, offset:number):number {
+    static getWordIndex(sentenceArray: Array<string>, offset: number): number {
         //Keep track of the current index
-        let currentIndex:number = 0;
-        
+        let currentIndex: number = 0;
+
         for (let word = 0; word < sentenceArray.length; word++) {
             for (let letter = 0; letter < sentenceArray[word].length; letter++) {
                 if (currentIndex == offset) {
@@ -67,14 +67,14 @@ class StringUtils {
         wordIndex: 4: Return 4 5 6
 
     */
-    static linkWord(sentenceArray:Array<string>, wordIndex:number):Array<number> {
+    static linkWord(sentenceArray: Array<string>, wordIndex: number): Array<number> {
 
         //Detected WordId
         let links: Array<number> = [];
-        
+
         // Push word Index
         links.push(wordIndex);
-        
+
         //Check if it's a space
         if (sentenceArray[wordIndex] == " ") return links;
 
@@ -84,7 +84,7 @@ class StringUtils {
             links.push(x);
             x++;
         }
-        
+
         // Iterate left
         x = wordIndex - 1;
         while (x >= 0 && sentenceArray[x] != " ") {

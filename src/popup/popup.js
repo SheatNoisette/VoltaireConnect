@@ -9,9 +9,9 @@
 */
 
 //Send message to content script enabling LT
-document.getElementById("VC_enableLT").onclick = function () { 
-    browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        browser.tabs.sendMessage(tabs[0].id, {enable: "languagetools"}, function(response) {
+document.getElementById("VC_enableLT").onclick = function () {
+    browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        browser.tabs.sendMessage(tabs[0].id, { enable: "languagetools" }, function (response) {
             //LT enable ?
             document.getElementById("VC_enableLT").textContent = response.enabled;
         });
@@ -19,9 +19,9 @@ document.getElementById("VC_enableLT").onclick = function () {
 };
 
 //Send message to content script enabling Wordlist
-document.getElementById("VC_enableWL").onclick = function () { 
-    browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        browser.tabs.sendMessage(tabs[0].id, {enable: "wordlist"}, function(response) {
+document.getElementById("VC_enableWL").onclick = function () {
+    browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        browser.tabs.sendMessage(tabs[0].id, { enable: "wordlist" }, function (response) {
             //WL enable ?
             document.getElementById("VC_enableWL").textContent = response.enabled;
         });
@@ -29,9 +29,9 @@ document.getElementById("VC_enableWL").onclick = function () {
 };
 
 //Send message to content script enabling cordial
-document.getElementById("VC_enableCD").onclick = function () { 
-    browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        browser.tabs.sendMessage(tabs[0].id, {enable: "cordial"}, function(response) {
+document.getElementById("VC_enableCD").onclick = function () {
+    browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        browser.tabs.sendMessage(tabs[0].id, { enable: "cordial" }, function (response) {
             //WL enable ?
             document.getElementById("VC_enableCD").textContent = response.enabled;
         });
@@ -39,8 +39,8 @@ document.getElementById("VC_enableCD").onclick = function () {
 };
 
 //Send message to content script enabling Wordlist
-document.getElementById("VC_reset").onclick = function () { 
-    browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        browser.tabs.sendMessage(tabs[0].id, {enable: "clear"}, function(response) {});
+document.getElementById("VC_reset").onclick = function () {
+    browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        browser.tabs.sendMessage(tabs[0].id, { enable: "clear" }, function (response) { });
     });
 };

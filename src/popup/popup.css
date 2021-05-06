@@ -1,11 +1,11 @@
 /*
-            ___                            _   
-    /\   /\/ __\___  _ __  _ __   ___  ___| |_ 
+            ___                            _
+    /\   /\/ __\___  _ __  _ __   ___  ___| |_
     \ \ / / /  / _ \| '_ \| '_ \ / _ \/ __| __|
-     \ V / /__| (_) | | | | | | |  __/ (__| |_ 
+     \ V / /__| (_) | | | | | | |  __/ (__| |_
       \_/\____/\___/|_| |_|_| |_|\___|\___|\__|
-                                                
-        Sentence checker for Projet-Volatire
+
+        Sentence checker for Projet-Voltaire
 */
 
 .warning {
@@ -25,4 +25,4 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-  }
+}
